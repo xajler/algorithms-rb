@@ -1,4 +1,5 @@
 require './spec/spec_helper'
+require './spec/helpers/union_helper'
 require './lib/union-find/quick_find'
 
 describe QuickFind do
@@ -48,46 +49,46 @@ describe QuickFind do
     quick_find.union(3, 8)
     quick_find.ids[3].should == 8
     quick_find.ids[4].should == 8
-    print(3, 8, quick_find.ids)
+    UnionHelper::print(3, 8, quick_find.ids)
 
     quick_find.union(6, 5)
     quick_find.ids[6].should == 5
-    print(6, 5, quick_find.ids)
+    UnionHelper::print(6, 5, quick_find.ids)
 
     quick_find.union(9, 4)
     quick_find.ids[9].should == 8
-    print(9, 4, quick_find.ids)
+    UnionHelper::print(9, 4, quick_find.ids)
 
     quick_find.union(2, 1)
     quick_find.ids[2].should == 1
-    print(2, 1, quick_find.ids)
+    UnionHelper::print(2, 1, quick_find.ids)
 
     should be_connected(8, 9)
-    print_connected(8, 9, quick_find.connected?(8, 9))
+    UnionHelper::print_connected(8, 9, quick_find.connected?(8, 9))
 
     should_not be_connected(5, 0)
-    print_connected(5, 0, quick_find.connected?(5, 0))
+    UnionHelper::print_connected(5, 0, quick_find.connected?(5, 0))
 
     quick_find.union(5, 0)
     quick_find.ids[5].should == 0
-    print(5, 0, quick_find.ids)
+    UnionHelper::print(5, 0, quick_find.ids)
 
     quick_find.union(7, 2)
     quick_find.ids[7].should == 1
-    print(7, 2, quick_find.ids)
+    UnionHelper::print(7, 2, quick_find.ids)
 
     quick_find.union(6, 1)
     quick_find.ids[6].should == 1
     quick_find.ids[0].should == 1
     quick_find.ids[5].should == 1
-    print(6, 1, quick_find.ids)
+    UnionHelper::print(6, 1, quick_find.ids)
 
     puts ''
     puts ''
   end
 
-  it 'Exercise 1' do
-    #8-1 5-9 2-8 4-6 7-1 4-1 
+  it 'Union-Find: Exercise 1' do
+    # 8-1 5-9 2-8 4-6 7-1 4-1 
     quick_find.union(8, 1)
     quick_find.union(5, 9)
     quick_find.union(2, 8)
@@ -98,15 +99,4 @@ describe QuickFind do
     p quick_find.ids
     puts ''
   end
-end
-
-def print(first_node, second_node, ids)
-  puts ''
-  puts "union(#{first_node}, #{second_node})"
-  p ids
-end
-
-def print_connected(first_node, second_node, connected)
-  puts ''
-  puts "connected(#{first_node}, #{second_node}) => #{connected}"
 end
