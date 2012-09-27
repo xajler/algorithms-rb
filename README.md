@@ -11,3 +11,4 @@ To specs added examples from video lectures and exercises.
 * Union-Find
     * Quick Find
     * Quick Union
+    * Weighted Union
